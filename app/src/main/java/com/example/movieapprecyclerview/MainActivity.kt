@@ -1,5 +1,6 @@
 package com.example.movieapprecyclerview
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -41,7 +42,7 @@ class MainActivity : AppCompatActivity() {
                     "OMG 2","PK","RRR","Saaho","Tanhaji:The Unsung warrior ","URI:The sergical strike")
 
         val releaseYearArray= arrayOf(
-            "2022", // Animal
+            "2023", // Animal
             "2016", // Baaghi
             "2013", // Chennai Express
             "2010", // Dabangg
@@ -63,17 +64,80 @@ class MainActivity : AppCompatActivity() {
             "2019"
         )
 
+        val castArray = arrayOf(
+            "Ranbir Kapoor ,Tripti Dimpari ,Rashmika Mandana",
+            "Tiger Shroff,Shraddha Kapoor",
+            "Shah Rukh Khan,Deepika Padukone",
+            "Salman Khan ,Sonakshi Sinha",
+            "Sidharth Malohtra,Riteish Deshmukh,Shradha Kapoor",
+            "John Abraham ,Genelia",
+            "Akshay Kumar,Sruti Hasan",
+            "Shah Rukh Khan,Deepika Padukone",
+            "Vikram,Amy Jakson",
+            "Salman khan ,Daisy Shah",
+            "Salman Khan ,Jacqueline Fernandez",
+            "Aamir Khan ,Karina Kapoor",
+            "Sushant Singh Rajput ,Kiara Advani,Disha Patani",
+            "Sonam Kapoor",
+            "Pankaj Tripathi ,AKshay Kumar,Yami Gautam",
+            "Aamir Khan , Anushka Sharma",
+            "Ram Charan , Jr N.T Rama Rao",
+            "Prabhas ,Shradha Kapoor",
+            "Ajay Devgan , Kajol ",
+            "Vicky Kaushal,Yami Gautam"
+
+
+        )
+
+        val synopsisArray = arrayOf(
+            R.string.animal,R.string.baaghi,R.string.chennai_express,R.string.dabangg,R.string.ek_villain,R.string.force,
+            R.string.gabbar_is_back,R.string.happy_new_year,R.string.i,R.string.jay_ho,R.string.kick,R.string.laal_singh_chadha,
+            R.string.dhoni,R.string.neerja,R.string.omg,R.string.pk,R.string.rrr,R.string.saaho,R.string.tanhaji,R.string.uri
+        )
+
+//        val castImagesList= listOf(listOf( R.drawable.cast1_movie1,R.drawable.cast2_movie_1),
+//            listOf(R.drawable.cast1_movie2,R.drawable.cast2_movie2,R.drawable.movie2_cast3,R.drawable.movie2_cast4,R.drawable.movie2_cast5),
+//
+//            listOf(R.drawable.cast1_movie1,R.drawable.cast2_movie_1),
+//            listOf(R.drawable.cast1_movie1,R.drawable.cast2_movie_1),
+//            listOf(R.drawable.cast1_movie1,R.drawable.cast2_movie_1),
+//            listOf(R.drawable.cast1_movie1,R.drawable.cast2_movie_1),
+//            listOf(R.drawable.cast1_movie1,R.drawable.cast2_movie_1),
+//            listOf(R.drawable.cast1_movie1,R.drawable.cast2_movie_1),
+//            listOf(R.drawable.cast1_movie1,R.drawable.cast2_movie_1),
+//            listOf(R.drawable.cast1_movie1,R.drawable.cast2_movie_1),
+//            listOf(R.drawable.cast1_movie1,R.drawable.cast2_movie_1),
+//            listOf(R.drawable.cast1_movie1,R.drawable.cast2_movie_1),
+//            listOf(R.drawable.cast1_movie1,R.drawable.cast2_movie_1),
+//            listOf(R.drawable.cast1_movie1,R.drawable.cast2_movie_1),
+//            listOf(R.drawable.cast1_movie1,R.drawable.cast2_movie_1),
+//            listOf(R.drawable.cast1_movie1,R.drawable.cast2_movie_1),
+//            listOf(R.drawable.cast1_movie1,R.drawable.cast2_movie_1),
+//            listOf(R.drawable.cast1_movie1,R.drawable.cast2_movie_1),
+//            listOf(R.drawable.cast1_movie1,R.drawable.cast2_movie_1),
+//            listOf(R.drawable.cast1_movie1,R.drawable.cast2_movie_1),
+//
+//        )
 
         recyclerView.layoutManager=LinearLayoutManager(this)
 
         moviesArrayList= arrayListOf<Movies>()
 
         for (index in moviesImageArray.indices){
-            val movie=Movies(moviesName[index],moviesImageArray[index],releaseYearArray[index])
+            val movie=Movies(moviesName[index],moviesImageArray[index],releaseYearArray[index],castArray[index],synopsisArray[index],castArray[index])
             moviesArrayList.add(movie)
         }
 
-        recyclerView.adapter=MyAdapter(moviesArrayList,this)
+        recyclerView.adapter = MyAdapter(moviesArrayList) { movie ->
+            val intent = Intent(this@MainActivity, MovieDetailActivity::class.java)
+            intent.putExtra("movie_name", movie.movieName)
+            intent.putExtra("movie_poster", movie.moviePoster)
+            intent.putExtra("movie_cast", movie.cast)
+            intent.putExtra("movie_synopsis", getString(movie.synopsis))
+            startActivity(intent)
+        }
+
+
 
     }
 }

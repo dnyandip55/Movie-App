@@ -8,7 +8,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
-class MyAdapter(var moviesArrayList:ArrayList<Movies>,context:Activity):
+class MyAdapter(var moviesArrayList:ArrayList<Movies>,private val onItemClick: (Movies) -> Unit):
     RecyclerView.Adapter<MyAdapter.MyViewHolder>() {
     class MyViewHolder(v: View):RecyclerView.ViewHolder(v) {
         val hImage=v.findViewById<ImageView>(R.id.imagePoster)
@@ -28,6 +28,10 @@ class MyAdapter(var moviesArrayList:ArrayList<Movies>,context:Activity):
         holder.hTitle.text=currentItem.movieName
         holder.hImage.setImageResource(currentItem.moviePoster)
         holder.hYear.text=currentItem.releaseYear
+
+        holder.itemView.setOnClickListener {
+            onItemClick(currentItem)
+        }
     }
 
     override fun getItemCount(): Int {

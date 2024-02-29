@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".MovieDetailActivity">
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/imagePoster"
+        android:layout_width="300dp"
+        android:layout_height="300dp"
+        android:src="@drawable/b"
+        android:layout_gravity="center"
+        android:layout_margin="10dp"
+        style="@style/SoftCorner"
+        />
+    <TextView
+        android:id="@+id/movieName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Baaghi"
+        android:textSize="25sp"
+        android:textStyle="bold"
+        android:gravity="center"/>
+    <TextView
+        android:id="@+id/cast"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textStyle="bold"
+        android:text="Cast:Shradha Kapoor, Tiger Shroff"
+        android:gravity="center"
+        android:textSize="20sp"/>
+
+        <TextView
+            android:id="@+id/synopsis"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="dkjiejfnfhnjehcinciehufnejgig"
+            android:gravity="center"/>
+
+
+</LinearLayout>
